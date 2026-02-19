@@ -162,6 +162,9 @@ GET /health
 It checks:
 - **Database** — ping check to verify the DB connection is alive
 - **Memory** — heap usage stays under 256 MB
+- **Redis** — ping check to verify Redis connectivity
+- **SMTP** — transporter verify (non-critical / degraded on failure)
+- **Storage** — S3 HeadBucket check (non-critical / degraded on failure)
 
 ---
 
@@ -174,6 +177,7 @@ For deeper dives into specific areas, see the other docs:
 | [Configuration](./CONFIGURATION.md)            | Config module, typed configs, Joi validation               |
 | [Common Utilities](./COMMON-UTILITIES.md)      | String, math, date, enum, UUID, hashing, response helpers  |
 | [Pagination](./PAGINATION.md)                  | Callback-based pagination, decorator, meta fields          |
+| [Storage](./STORAGE.md)                        | Storage module, S3 service API                             |
 | [Redis](./REDIS.md)                            | Redis module setup, RedisService API                       |
 | [Error Handling](./ERROR-HANDLING.md)           | Global exception filter, BusinessException, response shape |
 | [Security & Middleware](./SECURITY.md)          | CORS, Helmet, validation pipe, interceptors, guards        |

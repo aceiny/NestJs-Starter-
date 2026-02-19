@@ -14,7 +14,8 @@ A production-ready **NestJS 11** starter with batteries included — typed confi
 | Auth helpers | bcrypt, JWT config |
 | Docs | Swagger (auto-generated) |
 | Security | Helmet, CORS, cookie-parser |
-| Health | @nestjs/terminus (DB, Redis, Memory, SMTP) |
+| Health | @nestjs/terminus (DB, Redis, Memory, SMTP, Storage) |
+| Storage | @aws-sdk/client-s3 (S3, MinIO) |
 
 ## Features
 
@@ -24,7 +25,8 @@ A production-ready **NestJS 11** starter with batteries included — typed confi
 - **Timeout interceptor** — configurable request timeout via rxjs
 - **Pagination** — callback-based `paginate()` utility with transform support
 - **Redis module** — global ioredis client with retry strategy, exposed via `RedisService`
-- **Health checks** — DB ping, heap memory, Redis ping, SMTP verify (non-critical / degraded)
+- **Storage module** — global S3 client (S3/MinIO), `StorageService` with upload, download, delete, list, copy, move
+- **Health checks** — DB ping, heap memory, Redis ping, SMTP verify, S3 bucket (non-critical / degraded)
 - **Common utilities** — string, math, date, enum, UUID, hashing, request info (GeoIP + UA parsing), ORM filters, storage helpers, Redis key builders
 - **Security defaults** — Helmet, CORS config builder, cookie-parser, trust proxy
 - **Migration support** — TypeORM CLI wired up with `data-source.ts`
@@ -84,7 +86,8 @@ src/
 │   └── interceptors/          # Timeout, TransformResponse
 ├── modules/
 │   ├── redis/                 # Global Redis module + service
-│   └── health/                # Health controller + indicators (Redis, SMTP)
+│   ├── storage/               # Global Storage module + S3 service
+│   └── health/                # Health controller + indicators (Redis, SMTP, Storage)
 └── shared/                    # Legacy shared folder
 ```
 
@@ -98,6 +101,7 @@ Detailed docs live in the [`docs/`](docs/) folder:
 | [Configuration](docs/CONFIGURATION.md) | Config module & typed injection |
 | [Common Utilities](docs/COMMON-UTILITIES.md) | All utility functions |
 | [Pagination](docs/PAGINATION.md) | Callback-based pagination |
+| [Storage](docs/STORAGE.md) | Storage module & S3 service |
 | [Redis](docs/REDIS.md) | Redis module & helpers |
 | [Error Handling](docs/ERROR-HANDLING.md) | Exception filter & BusinessException |
 | [Security](docs/SECURITY.md) | Helmet, CORS, guards |
@@ -126,6 +130,13 @@ MAIL_HOST=smtp.example.com
 MAIL_PORT=587
 MAIL_USER=
 MAIL_PASSWORD=
+
+STORAGE_PROVIDER=s3
+STORAGE_ENDPOINT=https://s3.amazonaws.com
+STORAGE_BUCKET=my-bucket
+STORAGE_REGION=us-east-1
+STORAGE_ACCESS_KEY_ID=
+STORAGE_SECRET_ACCESS_KEY=
 
 JWT_SECRET=
 JWT_EXPIRY=3600

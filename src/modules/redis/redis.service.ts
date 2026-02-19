@@ -2,8 +2,7 @@ import { Injectable, OnModuleDestroy, Logger } from '@nestjs/common';
 import { Inject } from '@nestjs/common';
 import Redis from 'ioredis';
 import { DEFAULT_CACHE_TTL } from '../../common/constants/app.constant';
-
-export const REDIS_CLIENT = Symbol('REDIS_CLIENT');
+import { REDIS_CLIENT } from './redis.constants';
 
 /**
  * Injectable Redis service wrapping ioredis directly.

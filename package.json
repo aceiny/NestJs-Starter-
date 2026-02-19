@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -26,6 +26,7 @@
     "migration:show": "npm run typeorm -- migration:show"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.993.0",
     "@nestjs/axios": "^4.0.1",
     "@nestjs/cache-manager": "^3.1.0",
     "@nestjs/common": "^11.0.1",

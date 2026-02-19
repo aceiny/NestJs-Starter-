@@ -138,7 +138,7 @@ If you need the raw ioredis client without going through `RedisService`, you can
 ```typescript
 import { Inject, Injectable } from '@nestjs/common';
 import Redis from 'ioredis';
-import { REDIS_CLIENT } from 'src/modules/redis/redis.service';
+import { REDIS_CLIENT } from 'src/modules/redis/redis.constants';
 
 @Injectable()
 export class PubSubService {

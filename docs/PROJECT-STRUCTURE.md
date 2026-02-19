@@ -105,12 +105,29 @@ src/
 │
 ├── modules/
 │   ├── redis/
+│   │   ├── index.ts                 # Barrel export
+│   │   ├── redis.constants.ts       # REDIS_CLIENT symbol token
 │   │   ├── redis.module.ts          # Global Redis module (ioredis)
 │   │   └── redis.service.ts         # RedisService — get/set/del/exists/expire/incr/reset
 │   │
+│   ├── storage/
+│   │   ├── index.ts                 # Barrel export
+│   │   ├── storage.constants.ts     # S3_CLIENT symbol token
+│   │   ├── storage.module.ts        # Global Storage module (@aws-sdk/client-s3)
+│   │   ├── storage.service.ts       # StorageService — upload/download/delete/exists/list/copy/move
+│   │   └── types/
+│   │       ├── index.ts
+│   │       └── interfaces/
+│   │           ├── storage-upload-options.interface.ts  # UploadOptions
+│   │           └── storage-object.interface.ts          # StorageObject
+│   │
 │   └── health/
 │       ├── health.module.ts         # Terminus health module
-│       └── health.controller.ts     # GET /health — DB ping + memory check
+│       ├── health.controller.ts     # GET /health — DB, memory, Redis, SMTP, storage
+│       └── indicators/
+│           ├── redis.health.ts      # Redis ping indicator
+│           ├── smtp.health.ts       # SMTP verify indicator (non-critical)
+│           └── storage.health.ts    # S3 HeadBucket indicator (non-critical)
 │
 ├── shared/
 │   ├── constant/                    # Legacy constants (being consolidated into common/)
@@ -195,6 +212,7 @@ Register the module in `app.module.ts`:
     AppConfigModule,
     DatabaseModule,
     RedisModule,
+    StorageModule,
     HealthModule,
     UsersModule, // add here
   ],
