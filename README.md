@@ -1,4 +1,4 @@
-# Veil API
+# NestJs Starter
 
 A production-ready **NestJS 11** starter with batteries included — typed config, Redis, health checks, security hardening, and a full common utilities layer. Clone it, add your modules, and ship.
 
